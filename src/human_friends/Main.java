@@ -1,4 +1,6 @@
-import service.Service;
+package human_friends;
+
+import human_friends.service.Service;
 
 import java.time.LocalDate;
 

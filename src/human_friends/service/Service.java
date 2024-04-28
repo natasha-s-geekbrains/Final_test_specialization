@@ -1,8 +1,8 @@
-package service;
+package human_friends.service;
 
-import human_friends.Animal;
-import human_friends.AnimalBuilder;
-import registry.Registry;
+import human_friends.animal.Animal;
+import human_friends.animal_builder.AnimalBuilder;
+import human_friends.registry.Registry;
 
 import java.time.LocalDate;
 

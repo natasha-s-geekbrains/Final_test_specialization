@@ -1,4 +1,4 @@
-package human_friends;
+package human_friends.animal;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

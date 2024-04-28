@@ -1,4 +1,6 @@
-package human_friends;
+package human_friends.registry;
+
+import human_friends.animal.Animal;
 
 import java.util.Iterator;
 import java.util.List;

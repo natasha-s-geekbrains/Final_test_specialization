@@ -1,6 +1,6 @@
-package human_friends.animal_types;
+package human_friends.animal.types;
 
-import human_friends.Animal;
+import human_friends.animal.Animal;
 
 import java.time.LocalDate;
 
