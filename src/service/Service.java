@@ -1,3 +1,5 @@
+package service;
+
 import human_friends.Animal;
 import human_friends.AnimalBuilder;
 import registry.Registry;
