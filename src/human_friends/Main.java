@@ -1,6 +1,6 @@
 package human_friends;
 
-import human_friends.service.Service;
+import human_friends.model.service.Service;
 
 import java.time.LocalDate;
 

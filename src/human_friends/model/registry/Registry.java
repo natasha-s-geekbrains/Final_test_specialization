@@ -1,6 +1,6 @@
-package human_friends.registry;
+package human_friends.model.registry;
 
-import human_friends.animal.Animal;
+import human_friends.model.animal.Animal;
 
 import java.util.ArrayList;
 import java.util.Iterator;
