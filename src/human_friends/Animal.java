@@ -55,6 +55,6 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "human_friends.Animal { Type: " + type + ", id: " + id + ", name: " + name + ", Date of Birth: " + birthDate + " }";
+        return "Animal { Type: " + type + ", id: " + id + ", name: " + name + ", Date of Birth: " + birthDate + " }";
     }
 }
