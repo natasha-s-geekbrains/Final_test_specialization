@@ -37,8 +37,8 @@ public class Presenter {
         view.printAnswer(answer);
     }
 
-    public void addCommandToAnimal(int animalId, String strCommandId) {
-        String answer = service.addCommandToAnimal(animalId, strCommandId);
+    public void addCommandToAnimal(int animalId, int animalCommandId) {
+        String answer = service.addCommandToAnimal(animalId, animalCommandId);
         view.printAnswer(answer);
     }
 }

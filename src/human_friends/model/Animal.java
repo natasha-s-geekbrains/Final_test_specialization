@@ -69,16 +69,16 @@ public class Animal {
                 + birthDate + " }";
     }
 
-    public AnimalCommand getCommandNameFromCommandId(String strCommandId) {
-        AnimalCommand animalCommand = switch (strCommandId) {
-            case "1" -> AnimalCommand.Go;
-            case "2" -> AnimalCommand.Run;
-            case "3" -> AnimalCommand.Stay;
-            case "4" -> AnimalCommand.Voice;
-            case "5" -> AnimalCommand.Near;
-            case "6" -> AnimalCommand.Take;
-            case "7" -> AnimalCommand.Sit;
-            default -> throw new IllegalStateException("Unexpected value: " + strCommandId);
+    public AnimalCommand getCommandNameFromCommandId(int animalCommandId) {
+        AnimalCommand animalCommand = switch (animalCommandId) {
+            case 1 -> AnimalCommand.Go;
+            case 2 -> AnimalCommand.Run;
+            case 3 -> AnimalCommand.Stay;
+            case 4 -> AnimalCommand.Voice;
+            case 5 -> AnimalCommand.Near;
+            case 6 -> AnimalCommand.Take;
+            case 7 -> AnimalCommand.Sit;
+            default -> throw new IllegalStateException("Unexpected value: " + animalCommandId);
         };
         return animalCommand;
     }

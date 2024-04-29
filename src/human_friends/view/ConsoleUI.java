@@ -11,77 +11,93 @@ public class ConsoleUI implements View {
     private Presenter presenter;
     private Scanner scanner;
     private boolean work;
+    private MainMenu menu;
 
     public ConsoleUI() {
         scanner = new Scanner(System.in);
         presenter = new Presenter(this);
         work = true;
+        menu = new MainMenu(this);
     }
 
     @Override
     public void start() {
         System.out.println("Добро пожаловать в реестр домашних животных!");
-        System.out.println("1. Добавить новое животное в реестр");
-        System.out.println("2. Вывести список животных, внесенных в реестр");
-        System.out.println("3. Посмотреть, какие команды выполняет конкретное животное" +
-                "(для этого вам нужно знать ID животного. " +
-                "Выберите пункт №2, чтобы узнать ID нужного вам животного.)");
-        System.out.println("4. Добавить новую выученную команду конкретному животному");
-        System.out.println("9. Завершить работу в реестре");
-        System.out.println("Укажите номер пункта из меню выше:");
-        String choice = scanner.nextLine();
-        switch (choice) {
-            case "1":
-                addAnimal();
-                break;
-            case "2":
-                getAnimalListInfo();
-                break;
-            case "3":
-                getCommandListInfo();
-                break;
-            case "4":
-                addCommandToAnimal();
-                break;
-            case "9":
-                break;
+        while (work) {
+            printMenu();
+            choice();
         }
     }
 
-    private void addCommandToAnimal() {
+    private void choice() {
+        String strChoice = scanner.nextLine();
+        if (isNumeric(strChoice)) {
+            int choice = Integer.parseInt(strChoice);
+            if (choiceInMenu(choice)) {
+                menu.execute(choice);
+            }
+        }
+    }
+
+    private boolean choiceInMenu(int choice) {
+        if (choice <= menu.size()) {
+            return true;
+        } else {
+            errorText();
+            return false;
+        }
+    }
+
+    private void printMenu() {
+        System.out.println( menu.menu());
+        System.out.println("Укажите номер пункта из меню выше:");
+    }
+
+    public void finish() {
+        System.out.println("До новых встреч!");
+        work = false;
+    }
+
+    public void addCommandToAnimal() {
         System.out.println("Введите ID животного:");
         int animalId = Integer.parseInt(scanner.nextLine());
-        System.out.println("Введите цифру команды, которую нужно добавить, из списка ниже:" +
-                "1. Иди" +
-                "2. Бежать" +
-                "3. Стоять" +
-                "4. Голос" +
-                "5. Рядом" +
-                "6. Взять" +
+        System.out.println("Введите цифру команды, которую нужно добавить, из списка ниже:\n" +
+                "1. Иди\n" +
+                "2. Бежать\n" +
+                "3. Стоять\n" +
+                "4. Голос\n" +
+                "5. Рядом\n" +
+                "6. Взять\n" +
                 "7. Сидеть:");
-        String strCommandId = scanner.nextLine();
-        presenter.addCommandToAnimal(animalId, strCommandId);
+        String strAnimalCommandId = scanner.nextLine();
+        if (isNumeric(strAnimalCommandId)) {
+            int animalCommandId = Integer.parseInt(scanner.nextLine());
+            presenter.addCommandToAnimal(animalId, animalCommandId);
+        }
     }
 
-    private void getCommandListInfo() {
+    public void getCommandListInfo() {
         System.out.println("Введите ID животного:");
-        int animalId = Integer.parseInt(scanner.nextLine());
-        presenter.getCommandListInfo(animalId);
+        String animalId = scanner.nextLine();
+        if (isNumeric(animalId)) {
+            int idAnimal = Integer.parseInt(scanner.nextLine());
+            presenter.getCommandListInfo(idAnimal);
+        }
     }
 
-    private void getAnimalListInfo() {
+    public void getAnimalListInfo() {
         presenter.getAnimalListInfo();
     }
 
-    private void addAnimal() {
+    public void addAnimal() {
         System.out.println("Введите имя животного:");
         String name = scanner.nextLine();
         System.out.println("Введите через тире год, месяц и день рождения животного (например, 2000-01-31):");
         String strDate = scanner.nextLine();
-        System.out.println("Введите тип животного латинскими буквами (Dog, Cat или Hamster):");
+        System.out.println("Введите тип животного латинскими буквами (dog, cat или hamster):");
         String type = scanner.nextLine();
-        System.out.println("Введите группу животного латинскими буквами с пробелом" +
-                "(home animal):");
+        System.out.println("У нас пока только одна группа, поэтому введите латинскими буквами с пробелом\n " +
+                "home animal:");
         String group = scanner.nextLine();
         presenter.addAnimal(name, strDate, type, group);
     }
@@ -96,7 +112,16 @@ public class ConsoleUI implements View {
     }
 
     private void errorText() {
-        System.out.println("Введено неверное значение");
+        System.out.println("Введено неверное значение\n");
+    }
+
+    public boolean isNumeric(String str) {
+        if (str.matches("[0-9]+")) {
+            return true;
+        } else {
+            errorText();
+            return false;
+        }
     }
 
 }

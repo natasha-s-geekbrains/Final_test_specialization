@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class Cat extends Animal {
 
-    private String type = "Cat";
+    private String type = "cat";
     private String group = "home animal";
 
     public Cat(int id, String name, LocalDate birthDate, String type, String group) {

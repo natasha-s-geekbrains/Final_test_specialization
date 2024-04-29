@@ -10,14 +10,16 @@ import java.util.List;
 public class Registry implements Iterable<Animal> {
     private List<Animal> animalList;
 
+    //    public Registry() {
+//        this(new ArrayList<>());
+//    }
     public Registry() {
-        this(new ArrayList<>());
+        animalList = new ArrayList<>();
     }
 
-    public Registry(List<Animal> animalList) {
-        this.animalList = animalList;
-    }
-
+//    public Registry(List<Animal> animalList) {
+//        this.animalList = animalList;
+//    }
 
     public Animal getByName(String name) {
         for (Animal animal : animalList) {
@@ -34,12 +36,26 @@ public class Registry implements Iterable<Animal> {
     }
 
     public Animal getById(int animalId) {
-        for (Animal animal : animalList) {
-            if (animal.getId() == animalId) {
-                return animal;
+        if (checkId(animalId)) {
+            for (Animal animal : animalList) {
+                if (animal.getId() == animalId) {
+                    return animal;
+                }
             }
         }
         return null;
+    }
+
+    private boolean checkId(int id) {
+        if (id >= animalList.size() || id < 0) {
+            return false;
+        }
+        for (Animal animal : animalList) {
+            if (animal.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getAnimalListInfo() {
@@ -62,7 +78,6 @@ public class Registry implements Iterable<Animal> {
         return new AnimalIterator(animalList);
     }
 
-
     public String getAnimalCommandList(Animal animal) {
         StringBuilder sb = new StringBuilder();
         sb.append("Список команд:\n");
@@ -75,13 +90,18 @@ public class Registry implements Iterable<Animal> {
     }
 
     public String getCommandListInfo(int animalId) {
-        Animal animal = getById(animalId);
+        String answer = "Сожалеем, но животного с таким ID нет в реестре.";
+        Animal animal = null;
+        if (getById(animalId) == null) {
+            return answer;
+        } else
+            animal = getById(animalId);
         return getAnimalCommandList(animal);
     }
 
-    public String addCommandToAnimal(int animalId, String strCommandId) {
+    public String addCommandToAnimal(int animalId, int animalCommandId) {
         Animal animal = getById(animalId);
-        AnimalCommand animalCommand = animal.getCommandNameFromCommandId(strCommandId);
+        AnimalCommand animalCommand = animal.getCommandNameFromCommandId(animalCommandId);
         animal.addCommand(animalCommand);
         return "Команда успешно добавлена! Проверьте список команд животного (п.3 меню)";
     }
