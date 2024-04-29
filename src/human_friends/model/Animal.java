@@ -1,4 +1,4 @@
-package human_friends.model.animal;
+package human_friends.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,12 +11,14 @@ public class Animal {
     private LocalDate birthDate;
     private List<String> commandList;
     private String type;
+    private String group;
 
-    public Animal(int id, String name, LocalDate birthDate, String type) {
+    public Animal(int id, String name, LocalDate birthDate, String type, String group) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
         this.type = type;
+        this.group = group;
         commandList = new ArrayList<>();
     }
 
@@ -55,6 +57,14 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal { Type: " + type + ", id: " + id + ", name: " + name + ", Date of Birth: " + birthDate + " }";
+        return "Animal { "
+                + "Group: "
+                + group
+                + ", Type: "
+                + type + ", id: "
+                + id + ", name: "
+                + name
+                + ", Date of Birth: "
+                + birthDate + " }";
     }
 }
