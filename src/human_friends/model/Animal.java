@@ -9,7 +9,7 @@ public class Animal {
     private int id;
     private String name;
     private LocalDate birthDate;
-    private List<String> commandList;
+    private List<AnimalCommand> commandList;
     private String type;
     private String group;
 
@@ -28,18 +28,19 @@ public class Animal {
         this.birthDate = birthDate;
         commandList = new ArrayList<>();
     }
+
     public Animal() {
     }
 
-    public boolean addCommand(String command) {
-        if (!commandList.contains(command)) {
-            commandList.add(command);
+    public boolean addCommand(AnimalCommand animalCommand) {
+        if (!commandList.contains(animalCommand)) {
+            commandList.add(animalCommand);
             return true;
         }
         return false;
     }
 
-    public List<String> getCommandList() {
+    public List<AnimalCommand> getAnimalCommandList() {
         return commandList;
     }
 
@@ -66,5 +67,19 @@ public class Animal {
                 + name
                 + ", Date of Birth: "
                 + birthDate + " }";
+    }
+
+    public AnimalCommand getCommandNameFromCommandId(String strCommandId) {
+        AnimalCommand animalCommand = switch (strCommandId) {
+            case "1" -> AnimalCommand.Go;
+            case "2" -> AnimalCommand.Run;
+            case "3" -> AnimalCommand.Stay;
+            case "4" -> AnimalCommand.Voice;
+            case "5" -> AnimalCommand.Near;
+            case "6" -> AnimalCommand.Take;
+            case "7" -> AnimalCommand.Sit;
+            default -> throw new IllegalStateException("Unexpected value: " + strCommandId);
+        };
+        return animalCommand;
     }
 }

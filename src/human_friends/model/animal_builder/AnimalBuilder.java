@@ -6,7 +6,8 @@ import java.time.LocalDate;
 
 public class AnimalBuilder {
     private int id;
-    public Animal build(String name, LocalDate birthdate, String type, String group){
+
+    public Animal build(String name, LocalDate birthdate, String type, String group) {
         return new Animal(id++, name, birthdate, type, group);
     }
 }
