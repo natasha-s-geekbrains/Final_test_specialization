@@ -2,6 +2,7 @@ package human_friends.view;
 
 import human_friends.presenter.Presenter;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ConsoleUI implements View {

@@ -34,6 +34,5 @@ public class Service {
         return registry.addCommandToAnimal(animalId, strAnimalCommandNum);
     }
 
-
 }
 

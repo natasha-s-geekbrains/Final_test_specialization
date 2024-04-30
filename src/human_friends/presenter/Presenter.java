@@ -10,20 +10,35 @@ public class Presenter {
 
     private View view;
     private Service service;
+    private DateTimeFormatter formatter;
 
     public Presenter(View view) {
         this.view = view;
         service = new Service();
+        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     }
 
     public void addAnimal(String name, String strDate, String type, String group) {
-        LocalDate birthDate = getLocalDate(strDate);
-        String answer = service.addAnimal(name, birthDate, type, group);
-        view.printAnswer(answer);
+        String answer;
+        if (isValid(strDate)) {
+            LocalDate birthDate = getLocalDate(strDate);
+            answer = service.addAnimal(name, birthDate, type, group);
+        } else {
+            answer = "Вы ввели дату неправильно!";
+        }
+            view.printAnswer(answer);
+    }
+
+    private boolean isValid(String dateStr) {
+        try {
+            LocalDate.parse(dateStr, formatter);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private LocalDate getLocalDate(String strDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(strDate, formatter);
     }
 
@@ -42,3 +57,5 @@ public class Presenter {
         view.printAnswer(answer);
     }
 }
+
+
