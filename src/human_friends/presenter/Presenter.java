@@ -20,7 +20,7 @@ public class Presenter {
 
     public void addAnimal(String name, String strDate, String type, String group) {
         String answer;
-        if (isValid(strDate)) {
+        if (strDateIsValid(strDate)) {
             LocalDate birthDate = getLocalDate(strDate);
             answer = service.addAnimal(name, birthDate, type, group);
         } else {
@@ -29,7 +29,7 @@ public class Presenter {
             view.printAnswer(answer);
     }
 
-    private boolean isValid(String dateStr) {
+    private boolean strDateIsValid(String dateStr) {
         try {
             LocalDate.parse(dateStr, formatter);
             return true;
@@ -55,6 +55,10 @@ public class Presenter {
     public void addCommandToAnimal(int animalId, String strAnimalCommandNum) {
         String answer = service.addCommandToAnimal(animalId, strAnimalCommandNum);
         view.printAnswer(answer);
+    }
+
+    public boolean ifAnimalIdValid(int animalId) {
+        return service.ifAnimalIdValid(animalId);
     }
 }
 

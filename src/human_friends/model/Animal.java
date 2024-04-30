@@ -91,7 +91,7 @@ public class Animal {
                  animalCommand  = AnimalCommand.Sit;
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + strAnimalCommandNum);
+                animalCommand  = null;
         }
         return animalCommand;
     }
