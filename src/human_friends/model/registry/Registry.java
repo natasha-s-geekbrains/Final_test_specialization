@@ -52,13 +52,18 @@ public class Registry implements Iterable<Animal> {
     }
 
     public String getAnimalListInfo() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Список животных:\n");
-        for (Animal animal : animalList) {
-            sb.append(animal);
-            sb.append("\n");
+        String emptyList = "Список пуст!";
+        if (animalList.isEmpty()){
+            return emptyList;
+        }  else {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Список животных:\n");
+            for (Animal animal : animalList) {
+                sb.append(animal);
+                sb.append("\n");
+            }
+            return sb.toString();
         }
-        return sb.toString();
     }
 
     @Override
