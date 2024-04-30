@@ -107,14 +107,15 @@ public class ConsoleUI implements View {
         presenter.getAnimalListInfo();
     }
 
+
     public void addAnimal() {
         System.out.println("Введите имя животного:");
         String name = scanner.nextLine();
         System.out.println("Введите через тире год, месяц и день рождения животного (например, 2000-01-31):");
         String strDate = scanner.nextLine();
-        System.out.println("Введите тип животного латинскими буквами (dog, cat или hamster):");
+        System.out.println("Введите тип животного (dog, cat или hamster):");
         String type = scanner.nextLine();
-        System.out.println("У нас пока только одна группа, поэтому введите латинскими буквами с пробелом\n " +
+        System.out.println("У нас пока только одна группа, поэтому введите название группы\n " +
                 "home animal:");
         String group = scanner.nextLine();
         presenter.addAnimal(name, strDate, type, group);
