@@ -1,6 +1,7 @@
 package human_friends.view;
 
 import human_friends.presenter.Presenter;
+import human_friends.view.counter.Counter;
 
 import java.util.Scanner;
 
@@ -117,22 +118,27 @@ public class ConsoleUI implements View {
     }
 
     public void addAnimal() {
-        System.out.println("Введите имя животного:");
-        String name = scanner.nextLine();
-        System.out.println("Введите через тире год, месяц и день рождения животного (например, 2000-01-31):");
-        String strDate = scanner.nextLine();
-        if (presenter.strDateIsValid(strDate)) {
-            System.out.println("Введите тип животного (dog, cat или hamster):");
-            String type = scanner.nextLine();
-            System.out.println("У нас пока только одна группа, поэтому введите название группы\n " +
-                    "home animal:");
-            String group = scanner.nextLine();
-            presenter.addAnimal(name, strDate, type, group);
-            getAnimalListInfo();
-        } else {
-            System.out.println("Сожалеем, но вы ввели дату неправильно");
+        try (Counter counter = new Counter()) {
+            counter.add();
+            System.out.println("Введите имя животного:");
+            String name = scanner.nextLine();
+            System.out.println("Введите через тире год, месяц и день рождения животного (например, 2000-01-31):");
+            String strDate = scanner.nextLine();
+            if (presenter.strDateIsValid(strDate)) {
+                System.out.println("Введите тип животного (dog, cat или hamster):");
+                String type = scanner.nextLine();
+                System.out.println("У нас пока только одна группа, поэтому введите название группы\n " +
+                        "home animal:");
+                String group = scanner.nextLine();
+                presenter.addAnimal(name, strDate, type, group);
+                getAnimalListInfo();
+            } else {
+                System.out.println("Сожалеем, но вы ввели дату неправильно");
+            }
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage() + " Работа с объектом\n" +
+                    "типа счетчик была не в ресурсном try и/или ресурс остался открыт");
         }
     }
-
     //END CLASS
 }
