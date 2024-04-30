@@ -80,17 +80,24 @@ public class ConsoleUI implements View {
     public void addCommandToAnimal() {
         getAnimalListInfo();
         System.out.println("Введите ID животного из списка выше:");
-        int animalId = Integer.parseInt(scanner.nextLine());
-        System.out.println("Какую команду вы хотите добавить: введите цифру команды из списка ниже:\n" +
-                "1. Иди\n" +
-                "2. Бежать\n" +
-                "3. Стоять\n" +
-                "4. Голос\n" +
-                "5. Рядом\n" +
-                "6. Взять\n" +
-                "7. Сидеть:");
-        String strAnimalCommandNum = scanner.nextLine();
-        presenter.addCommandToAnimal(animalId, strAnimalCommandNum);
+        String strId = scanner.nextLine();
+        if (isNumeric(strId)) {
+            int animalId = Integer.parseInt(strId);
+            if (presenter.ifAnimalIdValid(animalId)) {
+                System.out.println("Какую команду вы хотите добавить: введите цифру команды из списка ниже:\n" +
+                        "1. Иди\n" +
+                        "2. Бежать\n" +
+                        "3. Стоять\n" +
+                        "4. Голос\n" +
+                        "5. Рядом\n" +
+                        "6. Взять\n" +
+                        "7. Сидеть:");
+                String strAnimalCommandNum = scanner.nextLine();
+                presenter.addCommandToAnimal(animalId, strAnimalCommandNum);
+            } else {
+                System.out.println("Сожалеем, но животного с таким ID нет в реестре");
+            }
+        }
     }
 
 

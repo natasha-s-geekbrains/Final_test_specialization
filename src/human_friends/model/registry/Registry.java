@@ -3,6 +3,7 @@ package human_friends.model.registry;
 import human_friends.model.Animal;
 import human_friends.model.AnimalCommand;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -36,7 +37,7 @@ public class Registry implements Iterable<Animal> {
     }
 
     public Animal getById(int animalId) {
-        if (checkId(animalId)) {
+        if (checkAnimalId(animalId)) {
             for (Animal animal : animalList) {
                 if (animal.getId() == animalId) {
                     return animal;
@@ -46,7 +47,7 @@ public class Registry implements Iterable<Animal> {
         return null;
     }
 
-    private boolean checkId(int id) {
+    public boolean checkAnimalId(int id) {
         if (id >= animalList.size() || id < 0) {
             return false;
         }
@@ -91,7 +92,7 @@ public class Registry implements Iterable<Animal> {
 
     public String getCommandListInfo(int animalId) {
         String answer = "Сожалеем, но животного с таким ID нет в реестре.";
-        Animal animal = null;
+        Animal animal;
         if (getById(animalId) == null) {
             return answer;
         } else
@@ -100,14 +101,19 @@ public class Registry implements Iterable<Animal> {
     }
 
     public String addCommandToAnimal(int animalId, String strAnimalCommandNum) {
-        Animal animal = getById(animalId);
-        AnimalCommand animalCommand = animal.getCommandNameFromCommandId(strAnimalCommandNum);
-        animal.addCommand(animalCommand);
-        StringBuilder sb = new StringBuilder();
-        sb.append("Команда успешно добавлена!\n");
-        sb.append(animal);
-        sb.append("\n");
-        sb.append(getCommandListInfo(animalId));
-        return sb.toString();
+        Animal animal;
+        animal = getById(animalId);
+        if(animal.getCommandNameFromCommandId(strAnimalCommandNum) == null){
+            return "Сожалеем, вы ввели неверный номер команды";
+        } else {
+            AnimalCommand animalCommand = animal.getCommandNameFromCommandId(strAnimalCommandNum);
+            animal.addCommand(animalCommand);
+            StringBuilder sb = new StringBuilder();
+            sb.append("Команда успешно добавлена!\n");
+            sb.append(animal);
+            sb.append("\n");
+            sb.append(getCommandListInfo(animalId));
+            return sb.toString();
+        }
     }
 }
