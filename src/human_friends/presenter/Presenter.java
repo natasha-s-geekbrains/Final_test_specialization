@@ -18,17 +18,6 @@ public class Presenter {
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     }
 
-//    public void addAnimal(String name, String strDate, String type, String group) {
-//        String answer;
-//        if (strDateIsValid(strDate)) {
-//            LocalDate birthDate = getLocalDate(strDate);
-//            answer = service.addAnimal(name, birthDate, type, group);
-//        } else {
-//            answer = "Вы ввели дату неправильно!";
-//        }
-//        view.printAnswer(answer);
-//    }
-
     public void addAnimal(String name, String strDate, String type, String group) {
         LocalDate birthdate = LocalDate.parse(strDate, formatter);
         String answer = service.addAnimal(name, birthdate, type, group);

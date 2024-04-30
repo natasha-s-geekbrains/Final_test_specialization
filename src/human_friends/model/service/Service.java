@@ -1,7 +1,6 @@
 package human_friends.model.service;
 
 import human_friends.model.Animal;
-import human_friends.model.AnimalCommand;
 import human_friends.model.animal_builder.AnimalBuilder;
 import human_friends.model.registry.Registry;
 
@@ -18,8 +17,12 @@ public class Service {
     }
 
     public String addAnimal(String name, LocalDate birthdate, String type, String group) {
-        Animal animal = builder.build(name, birthdate, type, group);
-        return registry.addAnimal(animal);
+        try {
+            Animal animal = builder.build(name, birthdate, type, group);
+            return registry.addAnimal(animal);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getAnimalListInfo() {
