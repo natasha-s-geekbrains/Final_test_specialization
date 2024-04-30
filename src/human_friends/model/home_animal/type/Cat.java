@@ -5,7 +5,8 @@ import human_friends.model.Animal;
 import java.time.LocalDate;
 
 public class Cat extends Animal {
-
+    /*
+     * не справилась использовать эти классы: не хватило опыта и времени */
     private String type = "cat";
     private String group = "home animal";
 

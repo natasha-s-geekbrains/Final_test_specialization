@@ -67,32 +67,15 @@ public class Animal {
     }
 
     public AnimalCommand getCommandNameFromCommandId(String strAnimalCommandNum) {
-        AnimalCommand animalCommand;
-        switch (strAnimalCommandNum) {
-            case "1":
-                animalCommand  = AnimalCommand.Go;
-                break;
-            case "2":
-                animalCommand  = AnimalCommand.Run;
-                break;
-            case "3":
-                 animalCommand  = AnimalCommand.Stay;
-                break;
-            case "4":
-                 animalCommand  = AnimalCommand.Voice;
-                break;
-            case "5":
-                 animalCommand  = AnimalCommand.Near;
-                break;
-            case "6":
-                 animalCommand  = AnimalCommand.Take;
-                break;
-            case "7":
-                 animalCommand  = AnimalCommand.Sit;
-                break;
-            default:
-                animalCommand  = null;
-        }
-        return animalCommand;
+        return switch (strAnimalCommandNum) {
+            case "1" -> AnimalCommand.Go;
+            case "2" -> AnimalCommand.Run;
+            case "3" -> AnimalCommand.Stay;
+            case "4" -> AnimalCommand.Voice;
+            case "5" -> AnimalCommand.Near;
+            case "6" -> AnimalCommand.Take;
+            case "7" -> AnimalCommand.Sit;
+            default -> null;
+        };
     }
 }

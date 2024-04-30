@@ -5,7 +5,8 @@ import human_friends.model.Animal;
 import java.time.LocalDate;
 
 public class Hamster extends Animal {
-
+    /*
+     * не справилась использовать эти классы: не хватило опыта и времени */
     private String type = "hamster";
     private String group = "home animal";
 

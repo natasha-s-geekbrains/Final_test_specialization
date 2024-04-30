@@ -2,7 +2,6 @@ package human_friends.view;
 
 import human_friends.presenter.Presenter;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ConsoleUI implements View {
@@ -31,6 +30,7 @@ public class ConsoleUI implements View {
     private void errorText() {
         System.out.println("Введено неверное значение\n");
     }
+
     @Override
     public void start() {
         System.out.println("Добро пожаловать в реестр домашних животных!");
@@ -58,6 +58,7 @@ public class ConsoleUI implements View {
             return false;
         }
     }
+
     private boolean choiceInMenu(int choice) {
         if (choice <= menu.size()) {
             return true;
@@ -68,7 +69,7 @@ public class ConsoleUI implements View {
     }
 
     private void printMenu() {
-        System.out.println( menu.menu());
+        System.out.println(menu.menu());
         System.out.println("Укажите номер пункта из меню выше:");
     }
 
@@ -84,14 +85,15 @@ public class ConsoleUI implements View {
         if (isNumeric(strId)) {
             int animalId = Integer.parseInt(strId);
             if (presenter.ifAnimalIdValid(animalId)) {
-                System.out.println("Какую команду вы хотите добавить: введите цифру команды из списка ниже:\n" +
-                        "1. Иди\n" +
-                        "2. Бежать\n" +
-                        "3. Стоять\n" +
-                        "4. Голос\n" +
-                        "5. Рядом\n" +
-                        "6. Взять\n" +
-                        "7. Сидеть:");
+                System.out.println("""
+                        Какую команду вы хотите добавить: введите цифру команды из списка ниже:
+                        1. Иди
+                        2. Бежать
+                        3. Стоять
+                        4. Голос
+                        5. Рядом
+                        6. Взять
+                        7. Сидеть:""");
                 String strAnimalCommandNum = scanner.nextLine();
                 presenter.addCommandToAnimal(animalId, strAnimalCommandNum);
             } else {
@@ -99,7 +101,6 @@ public class ConsoleUI implements View {
             }
         }
     }
-
 
     public void getCommandListInfo() {
         getAnimalListInfo();

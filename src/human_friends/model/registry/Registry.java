@@ -3,7 +3,6 @@ package human_friends.model.registry;
 import human_friends.model.Animal;
 import human_friends.model.AnimalCommand;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,16 +10,9 @@ import java.util.List;
 public class Registry implements Iterable<Animal> {
     private List<Animal> animalList;
 
-    //    public Registry() {
-//        this(new ArrayList<>());
-//    }
     public Registry() {
         animalList = new ArrayList<>();
     }
-
-//    public Registry(List<Animal> animalList) {
-//        this.animalList = animalList;
-//    }
 
     public Animal getByName(String name) {
         for (Animal animal : animalList) {
@@ -103,7 +95,7 @@ public class Registry implements Iterable<Animal> {
     public String addCommandToAnimal(int animalId, String strAnimalCommandNum) {
         Animal animal;
         animal = getById(animalId);
-        if(animal.getCommandNameFromCommandId(strAnimalCommandNum) == null){
+        if (animal.getCommandNameFromCommandId(strAnimalCommandNum) == null) {
             return "Сожалеем, вы ввели неверный номер команды";
         } else {
             AnimalCommand animalCommand = animal.getCommandNameFromCommandId(strAnimalCommandNum);

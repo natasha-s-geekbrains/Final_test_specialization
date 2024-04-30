@@ -26,7 +26,7 @@ public class Presenter {
         } else {
             answer = "Вы ввели дату неправильно!";
         }
-            view.printAnswer(answer);
+        view.printAnswer(answer);
     }
 
     private boolean strDateIsValid(String dateStr) {
