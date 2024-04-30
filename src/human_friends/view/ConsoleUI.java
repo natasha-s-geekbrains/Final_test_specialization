@@ -71,16 +71,16 @@ public class ConsoleUI implements View {
                 "7. Сидеть:");
         String strAnimalCommandId = scanner.nextLine();
         if (isNumeric(strAnimalCommandId)) {
-            int animalCommandId = Integer.parseInt(scanner.nextLine());
+            int animalCommandId = Integer.parseInt(strAnimalCommandId);
             presenter.addCommandToAnimal(animalId, animalCommandId);
         }
     }
 
     public void getCommandListInfo() {
         System.out.println("Введите ID животного:");
-        String animalId = scanner.nextLine();
-        if (isNumeric(animalId)) {
-            int idAnimal = Integer.parseInt(scanner.nextLine());
+        String strAnimalId = scanner.nextLine();
+        if (isNumeric(strAnimalId)) {
+            int idAnimal = Integer.parseInt(strAnimalId);
             presenter.getCommandListInfo(idAnimal);
         }
     }
