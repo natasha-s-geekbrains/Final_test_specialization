@@ -1,6 +1,8 @@
 package human_friends.view;
 
 import human_friends.presenter.Presenter;
+import human_friends.view.MainMenu;
+import human_friends.view.View;
 
 import java.util.Scanner;
 
@@ -18,18 +20,6 @@ public class ConsoleUI implements View {
         menu = new MainMenu(this);
     }
 
-    @Override
-    public void printAnswer(String answer) {
-        if (answer != null) {
-            System.out.println(answer);
-        } else {
-            errorText();
-        }
-    }
-
-    private void errorText() {
-        System.out.println("Введено неверное значение\n");
-    }
     @Override
     public void start() {
         System.out.println("Добро пожаловать в реестр домашних животных!");
@@ -49,14 +39,6 @@ public class ConsoleUI implements View {
         }
     }
 
-    public boolean isNumeric(String str) {
-        if (str.matches("[0-9]+")) {
-            return true;
-        } else {
-            errorText();
-            return false;
-        }
-    }
     private boolean choiceInMenu(int choice) {
         if (choice <= menu.size()) {
             return true;
@@ -118,5 +100,26 @@ public class ConsoleUI implements View {
         presenter.addAnimal(name, strDate, type, group);
     }
 
-    //FINISH
+    @Override
+    public void printAnswer(String answer) {
+        if (answer != null) {
+            System.out.println(answer);
+        } else {
+            errorText();
+        }
+    }
+
+    private void errorText() {
+        System.out.println("Введено неверное значение\n");
+    }
+
+    public boolean isNumeric(String str) {
+        if (str.matches("[0-9]+")) {
+            return true;
+        } else {
+            errorText();
+            return false;
+        }
+    }
+
 }
