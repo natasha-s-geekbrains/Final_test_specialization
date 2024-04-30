@@ -18,18 +18,24 @@ public class Presenter {
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     }
 
+//    public void addAnimal(String name, String strDate, String type, String group) {
+//        String answer;
+//        if (strDateIsValid(strDate)) {
+//            LocalDate birthDate = getLocalDate(strDate);
+//            answer = service.addAnimal(name, birthDate, type, group);
+//        } else {
+//            answer = "Вы ввели дату неправильно!";
+//        }
+//        view.printAnswer(answer);
+//    }
+
     public void addAnimal(String name, String strDate, String type, String group) {
-        String answer;
-        if (strDateIsValid(strDate)) {
-            LocalDate birthDate = getLocalDate(strDate);
-            answer = service.addAnimal(name, birthDate, type, group);
-        } else {
-            answer = "Вы ввели дату неправильно!";
-        }
+        LocalDate birthdate = LocalDate.parse(strDate, formatter);
+        String answer = service.addAnimal(name, birthdate, type, group);
         view.printAnswer(answer);
     }
 
-    private boolean strDateIsValid(String dateStr) {
+    public boolean strDateIsValid(String dateStr) {
         try {
             LocalDate.parse(dateStr, formatter);
             return true;
@@ -60,6 +66,7 @@ public class Presenter {
     public boolean ifAnimalIdValid(int animalId) {
         return service.ifAnimalIdValid(animalId);
     }
+
 }
 
 
