@@ -5,9 +5,8 @@ import human_friends.view.ConsoleUI;
 public class GetCommandListInfo extends Command {
 
     public GetCommandListInfo(ConsoleUI consoleUI) {
-        super("Посмотреть, какие команды выполняет конкретное животное.\n" +
-                "Для этого вам нужно знать ID животного =>\n" +
-                "=> Выберите пункт №2, чтобы узнать ID нужного вам животного.", consoleUI);
+        super("Проверить список команд конкретного животного.\n" +
+                "Укажите ID животного из списка выше", consoleUI);
     }
 
     @Override

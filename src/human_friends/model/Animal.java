@@ -59,14 +59,11 @@ public class Animal {
     @Override
     public String toString() {
         return "Animal { "
-                + "Group: "
-                + group
-                + ", Type: "
-                + type + ", id: "
-                + id + ", name: "
-                + name
-                + ", Date of Birth: "
-                + birthDate + " }";
+                + "Id: " + id
+                + ", Group: " + group
+                + ", Type: " + type
+                + ", name: " + name
+                + ", Date of Birth: " + birthDate + " }";
     }
 
     public AnimalCommand getCommandNameFromCommandId(String strAnimalCommandNum) {

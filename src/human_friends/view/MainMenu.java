@@ -12,13 +12,15 @@ public class MainMenu {
         commands = new ArrayList<>();
         commands.add(new AddAnimal(consoleUI));
         commands.add(new GetAnimalListInfo(consoleUI));
-        commands.add(new GetCommandListInfo(consoleUI));
         commands.add(new AddCommandToAnimal(consoleUI));
+        commands.add(new GetCommandListInfo(consoleUI));
         commands.add(new Finish(consoleUI));
     }
 
     public String menu() {
         StringBuilder sb = new StringBuilder();
+        sb.append("Ваши возможные действия:");
+        sb.append("\n");
         for (int i = 0; i < commands.size(); i++) {
             sb.append(i + 1);
             sb.append(". ");

@@ -77,9 +77,10 @@ public class ConsoleUI implements View {
     }
 
     public void addCommandToAnimal() {
-        System.out.println("Введите ID животного:");
+        getAnimalListInfo();
+        System.out.println("Введите ID животного из списка выше:");
         int animalId = Integer.parseInt(scanner.nextLine());
-        System.out.println("Введите цифру команды, которую нужно добавить, из списка ниже:\n" +
+        System.out.println("Какую команду вы хотите добавить: введите цифру команды из списка ниже:\n" +
                 "1. Иди\n" +
                 "2. Бежать\n" +
                 "3. Стоять\n" +
@@ -93,6 +94,7 @@ public class ConsoleUI implements View {
 
 
     public void getCommandListInfo() {
+        getAnimalListInfo();
         System.out.println("Введите ID животного:");
         String strAnimalId = scanner.nextLine();
         if (isNumeric(strAnimalId)) {
@@ -116,7 +118,8 @@ public class ConsoleUI implements View {
                 "home animal:");
         String group = scanner.nextLine();
         presenter.addAnimal(name, strDate, type, group);
+        getAnimalListInfo();
     }
 
-    //FINISH
+    //END CLASS
 }
