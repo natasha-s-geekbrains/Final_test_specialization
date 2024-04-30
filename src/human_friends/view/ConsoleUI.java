@@ -119,7 +119,6 @@ public class ConsoleUI implements View {
 
     public void addAnimal() {
         try (Counter counter = new Counter()) {
-            counter.add();
             System.out.println("Введите имя животного:");
             String name = scanner.nextLine();
             System.out.println("Введите через тире год, месяц и день рождения животного (например, 2000-01-31):");
@@ -132,6 +131,7 @@ public class ConsoleUI implements View {
                 String group = scanner.nextLine();
                 presenter.addAnimal(name, strDate, type, group);
                 getAnimalListInfo();
+                counter.add();
             } else {
                 System.out.println("Сожалеем, но вы ввели дату неправильно");
             }
