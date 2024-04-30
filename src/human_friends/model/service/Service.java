@@ -44,5 +44,9 @@ public class Service {
     public String getAnimalInfo(int idAnimal) {
         return registry.getAnimalInfo(idAnimal);
     }
+
+    public boolean animalListIsEmpty() {
+        return registry.animalListIsEmpty();
+    }
 }
 

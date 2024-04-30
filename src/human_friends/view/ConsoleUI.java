@@ -80,37 +80,45 @@ public class ConsoleUI implements View {
     }
 
     public void addCommandToAnimal() {
-        getAnimalListInfo();
-        System.out.println("Введите ID животного из списка выше:");
-        String strId = scanner.nextLine();
-        if (isNumeric(strId)) {
-            int animalId = Integer.parseInt(strId);
-            if (presenter.ifAnimalIdValid(animalId)) {
-                System.out.println("""
-                        Какую команду вы хотите добавить: введите цифру команды из списка ниже:
-                        1. Иди
-                        2. Бежать
-                        3. Стоять
-                        4. Голос
-                        5. Рядом
-                        6. Взять
-                        7. Сидеть:""");
-                String strAnimalCommandNum = scanner.nextLine();
-                presenter.addCommandToAnimal(animalId, strAnimalCommandNum);
-            } else {
-                System.out.println("Сожалеем, но животного с таким ID нет в реестре");
+        if (presenter.animalListIsEmpty()) {
+            System.out.println("Список животных пуст");
+        } else {
+            getAnimalListInfo();
+            System.out.println("Введите ID животного из списка выше:");
+            String strId = scanner.nextLine();
+            if (isNumeric(strId)) {
+                int animalId = Integer.parseInt(strId);
+                if (presenter.ifAnimalIdValid(animalId)) {
+                    System.out.println("""
+                            Введите номер команды, которую вы хотите добавить из списка ниже:
+                            1. Иди
+                            2. Бежать
+                            3. Стоять
+                            4. Голос
+                            5. Рядом
+                            6. Взять
+                            7. Сидеть:""");
+                    String strAnimalCommandNum = scanner.nextLine();
+                    presenter.addCommandToAnimal(animalId, strAnimalCommandNum);
+                } else {
+                    System.out.println("Сожалеем, но животного с таким ID нет в реестре");
+                }
             }
         }
     }
 
     public void getCommandListInfo() {
-        getAnimalListInfo();
-        System.out.println("Введите ID животного:");
-        String strAnimalId = scanner.nextLine();
-        if (isNumeric(strAnimalId)) {
-            int idAnimal = Integer.parseInt(strAnimalId);
-            presenter.getAnimalInfo(idAnimal);
-            presenter.getCommandListInfo(idAnimal);
+        if (presenter.animalListIsEmpty()) {
+            System.out.println("Список животных пуст");
+        } else {
+            getAnimalListInfo();
+            System.out.println("Введите ID животного:");
+            String strAnimalId = scanner.nextLine();
+            if (isNumeric(strAnimalId)) {
+                int idAnimal = Integer.parseInt(strAnimalId);
+                presenter.getAnimalInfo(idAnimal);
+                presenter.getCommandListInfo(idAnimal);
+            }
         }
     }
 

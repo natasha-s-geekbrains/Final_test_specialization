@@ -56,6 +56,10 @@ public class Presenter {
         String answer = service.getAnimalInfo(idAnimal);
         view.printAnswer(answer);
     }
+
+    public boolean animalListIsEmpty() {
+        return service.animalListIsEmpty();
+    }
 }
 
 

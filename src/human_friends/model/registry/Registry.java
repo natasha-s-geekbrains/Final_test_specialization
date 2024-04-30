@@ -52,10 +52,10 @@ public class Registry implements Iterable<Animal> {
     }
 
     public String getAnimalListInfo() {
-        String emptyList = "Список пуст!";
-        if (animalList.isEmpty()){
+        String emptyList = "Список животных пуст!";
+        if (animalList.isEmpty()) {
             return emptyList;
-        }  else {
+        } else {
             StringBuilder sb = new StringBuilder();
             sb.append("Список животных:\n");
             for (Animal animal : animalList) {
@@ -77,14 +77,18 @@ public class Registry implements Iterable<Animal> {
     }
 
     public String getAnimalCommandList(Animal animal) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Список команд:\n");
-        // assert animal != null;
-        for (AnimalCommand animalCommand : animal.getAnimalCommandList()) {
-            sb.append(animalCommand);
-            sb.append("\n");
+        String emptyList = "Список команд пуст!";
+        if (animal.getAnimalCommandList().isEmpty()) {
+            return emptyList;
+        } else {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Список команд:\n");
+            for (AnimalCommand animalCommand : animal.getAnimalCommandList()) {
+                sb.append("***" + animalCommand);
+                sb.append("\n");
+            }
+            return sb.toString();
         }
-        return sb.toString();
     }
 
     public String getCommandListInfo(int animalId) {
@@ -117,5 +121,9 @@ public class Registry implements Iterable<Animal> {
     public String getAnimalInfo(int idAnimal) {
         Animal animal = getById(idAnimal);
         return String.valueOf(animal);
+    }
+
+    public boolean animalListIsEmpty() {
+        return animalList.isEmpty();
     }
 }
