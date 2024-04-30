@@ -109,6 +109,7 @@ public class ConsoleUI implements View {
         String strAnimalId = scanner.nextLine();
         if (isNumeric(strAnimalId)) {
             int idAnimal = Integer.parseInt(strAnimalId);
+            presenter.getAnimalInfo(idAnimal);
             presenter.getCommandListInfo(idAnimal);
         }
     }
@@ -118,26 +119,42 @@ public class ConsoleUI implements View {
     }
 
     public void addAnimal() {
+        boolean flag = true;
         try (Counter counter = new Counter()) {
             System.out.println("Введите имя животного:");
             String name = scanner.nextLine();
-            System.out.println("Введите через тире год, месяц и день рождения животного (например, 2000-01-31):");
+            if (name.isEmpty()) {
+                flag = false;
+            }
+            System.out.println("Введите через тире год, месяц и день рождения животного.\n" +
+                    "Образец ввода=>    2000-01-31");
             String strDate = scanner.nextLine();
             if (presenter.strDateIsValid(strDate)) {
                 System.out.println("Введите тип животного (dog, cat или hamster):");
                 String type = scanner.nextLine();
+                if (type.isEmpty()) {
+                    flag = false;
+                }
                 System.out.println("У нас пока только одна группа, поэтому введите название группы\n " +
                         "home animal:");
                 String group = scanner.nextLine();
+                if (group.isEmpty()) {
+                    flag = false;
+                }
                 presenter.addAnimal(name, strDate, type, group);
                 getAnimalListInfo();
-                counter.add();
             } else {
+                flag = false;
                 System.out.println("Сожалеем, но вы ввели дату неправильно");
             }
-        } catch (RuntimeException e){
-            System.out.println(e.getMessage() + " Работа с объектом\n" +
-                    "типа счетчик была не в ресурсном try и/или ресурс остался открыт");
+
+            if (!flag) {
+                throw new RuntimeException(" Работа с объектом\n" +
+                        "типа счетчик была не в ресурсном try и/или ресурс остался открыт. " +
+                        "Counter value = " + counter.getCurrentCounterValue());
+            }
+
+            counter.add();
         }
     }
     //END CLASS

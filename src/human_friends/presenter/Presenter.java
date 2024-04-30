@@ -33,10 +33,6 @@ public class Presenter {
         }
     }
 
-    private LocalDate getLocalDate(String strDate) {
-        return LocalDate.parse(strDate, formatter);
-    }
-
     public void getAnimalListInfo() {
         String answer = service.getAnimalListInfo();
         view.printAnswer(answer);
@@ -56,6 +52,10 @@ public class Presenter {
         return service.ifAnimalIdValid(animalId);
     }
 
+    public void getAnimalInfo(int idAnimal) {
+        String answer = service.getAnimalInfo(idAnimal);
+        view.printAnswer(answer);
+    }
 }
 
 

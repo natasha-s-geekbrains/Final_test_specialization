@@ -108,4 +108,9 @@ public class Registry implements Iterable<Animal> {
             return sb.toString();
         }
     }
+
+    public String getAnimalInfo(int idAnimal) {
+        Animal animal = getById(idAnimal);
+        return String.valueOf(animal);
+    }
 }

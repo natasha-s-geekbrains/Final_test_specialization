@@ -6,12 +6,15 @@ public class Counter implements AutoCloseable {
 
     @Override
     public void close() {
-        System.out.println("Counter closed!");
-        System.out.println(currentCounterValue);
     }
 
     public void add() {
         currentCounterValue++;
     }
+
+    public int getCurrentCounterValue() {
+        return currentCounterValue;
+    }
 }
+
 

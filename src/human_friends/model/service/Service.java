@@ -40,5 +40,9 @@ public class Service {
     public boolean ifAnimalIdValid(int animalId) {
         return registry.checkAnimalId(animalId);
     }
+
+    public String getAnimalInfo(int idAnimal) {
+        return registry.getAnimalInfo(idAnimal);
+    }
 }
 
