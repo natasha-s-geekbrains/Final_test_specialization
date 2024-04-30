@@ -30,8 +30,8 @@ public class Service {
         return registry.getCommandListInfo(animalId);
     }
 
-    public String addCommandToAnimal(int animalId, int animalCommandId) {
-        return registry.addCommandToAnimal(animalId, animalCommandId);
+    public String addCommandToAnimal(int animalId, String strAnimalCommandNum) {
+        return registry.addCommandToAnimal(animalId, strAnimalCommandNum);
     }
 
 

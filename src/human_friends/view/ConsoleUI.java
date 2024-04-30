@@ -1,9 +1,9 @@
 package human_friends.view;
 
-import human_friends.model.AnimalCommand;
 import human_friends.presenter.Presenter;
+import human_friends.view.MainMenu;
+import human_friends.view.View;
 
-import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class ConsoleUI implements View {
@@ -69,59 +69,57 @@ public class ConsoleUI implements View {
                 "5. Рядом\n" +
                 "6. Взять\n" +
                 "7. Сидеть:");
-        String strAnimalCommandId = scanner.nextLine();
-        if (isNumeric(strAnimalCommandId)) {
-            int animalCommandId = Integer.parseInt(strAnimalCommandId);
-            presenter.addCommandToAnimal(animalId, animalCommandId);
-        }
+        String strAnimalCommandNum = scanner.nextLine();
+        presenter.addCommandToAnimal(animalId, strAnimalCommandNum);
     }
+}
 
-    public void getCommandListInfo() {
-        System.out.println("Введите ID животного:");
-        String strAnimalId = scanner.nextLine();
-        if (isNumeric(strAnimalId)) {
-            int idAnimal = Integer.parseInt(strAnimalId);
-            presenter.getCommandListInfo(idAnimal);
-        }
+public void getCommandListInfo() {
+    System.out.println("Введите ID животного:");
+    String strAnimalId = scanner.nextLine();
+    if (isNumeric(strAnimalId)) {
+        int idAnimal = Integer.parseInt(strAnimalId);
+        presenter.getCommandListInfo(idAnimal);
     }
+}
 
-    public void getAnimalListInfo() {
-        presenter.getAnimalListInfo();
-    }
+public void getAnimalListInfo() {
+    presenter.getAnimalListInfo();
+}
 
-    public void addAnimal() {
-        System.out.println("Введите имя животного:");
-        String name = scanner.nextLine();
-        System.out.println("Введите через тире год, месяц и день рождения животного (например, 2000-01-31):");
-        String strDate = scanner.nextLine();
-        System.out.println("Введите тип животного латинскими буквами (dog, cat или hamster):");
-        String type = scanner.nextLine();
-        System.out.println("У нас пока только одна группа, поэтому введите латинскими буквами с пробелом\n " +
-                "home animal:");
-        String group = scanner.nextLine();
-        presenter.addAnimal(name, strDate, type, group);
-    }
+public void addAnimal() {
+    System.out.println("Введите имя животного:");
+    String name = scanner.nextLine();
+    System.out.println("Введите через тире год, месяц и день рождения животного (например, 2000-01-31):");
+    String strDate = scanner.nextLine();
+    System.out.println("Введите тип животного латинскими буквами (dog, cat или hamster):");
+    String type = scanner.nextLine();
+    System.out.println("У нас пока только одна группа, поэтому введите латинскими буквами с пробелом\n " +
+            "home animal:");
+    String group = scanner.nextLine();
+    presenter.addAnimal(name, strDate, type, group);
+}
 
-    @Override
-    public void printAnswer(String answer) {
-        if (answer != null) {
-            System.out.println(answer);
-        } else {
-            errorText();
-        }
+@Override
+public void printAnswer(String answer) {
+    if (answer != null) {
+        System.out.println(answer);
+    } else {
+        errorText();
     }
+}
 
-    private void errorText() {
-        System.out.println("Введено неверное значение\n");
-    }
+private void errorText() {
+    System.out.println("Введено неверное значение\n");
+}
 
-    public boolean isNumeric(String str) {
-        if (str.matches("[0-9]+")) {
-            return true;
-        } else {
-            errorText();
-            return false;
-        }
+public boolean isNumeric(String str) {
+    if (str.matches("[0-9]+")) {
+        return true;
+    } else {
+        errorText();
+        return false;
     }
+}
 
 }

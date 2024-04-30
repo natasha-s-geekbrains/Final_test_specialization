@@ -99,9 +99,9 @@ public class Registry implements Iterable<Animal> {
         return getAnimalCommandList(animal);
     }
 
-    public String addCommandToAnimal(int animalId, int animalCommandId) {
+    public String addCommandToAnimal(int animalId, String strAnimalCommandNum) {
         Animal animal = getById(animalId);
-        AnimalCommand animalCommand = animal.getCommandNameFromCommandId(animalCommandId);
+        AnimalCommand animalCommand = animal.getCommandNameFromCommandId(strAnimalCommandNum);
         animal.addCommand(animalCommand);
         return "Команда успешно добавлена! Проверьте список команд животного (п.3 меню)";
     }
